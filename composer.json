@@ -22,8 +22,7 @@
         "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
         "axleus/axleus-configmanager": "dev-master",
         "axleus/axleus-core": "dev-master",
-        "axleus/axleus-usermanager": "dev-master",
-        "laminas/laminas-eventmanager": "^3.13.1"
+        "axleus/axleus-usermanager": "dev-master"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "^2.5",
