@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Axleus\Admin;
 
+use Axleus\Core\Middleware\AuthorizedHandlerPipelineDelegator as AuthorizedPipeline;
 use Fig\Http\Message\RequestMethodInterface as Http;
+use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 
 final class ConfigProvider
 {
@@ -20,8 +22,13 @@ final class ConfigProvider
     public function getDependencies(): array
     {
         return [
-            'aliases'   => [],
-            'factories' => [
+            'aliases'    => [],
+            'delegators' => [
+                Handler\DashboardHandler::class => [
+                    AuthorizedPipeline::class,
+                ],
+            ],
+            'factories'  => [
                 Middleware\AdminConnectMiddleware::class => Middleware\AdminConnectMiddlewareFactory::class,
             ],
         ];
@@ -31,8 +38,8 @@ final class ConfigProvider
     {
         return [
             [
-                'path' => '/admin',
-                'name' => 'Admin Dashboard',
+                'path'       => '/axleus/admin',
+                'name'       => 'Admin Dashboard',
                 'middleware' => [
                     BodyParamsMiddleware::class,
                     Middleware\AdminConnectMiddleware::class,
