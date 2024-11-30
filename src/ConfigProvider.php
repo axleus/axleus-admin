@@ -13,9 +13,24 @@ final class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'dependencies' => $this->getDependencies(),
-            'routes'       => $this->getRoutes(),
-            'templates'    => $this->getTemplates(),
+            'dependencies'             => $this->getDependencies(),
+            'mezzio-authorization-acl' => $this->getAuthorizationConfig(),
+            'routes'                   => $this->getRoutes(),
+            'templates'                => $this->getTemplates(),
+        ];
+    }
+
+    public function getAuthorizationConfig(): array
+    {
+        return [
+            'resources' => [
+                'admin.dashboard',
+            ],
+            'allow'     => [
+                'Administrator' => [
+                    'admin.dashboard',
+                ],
+            ],
         ];
     }
 
@@ -24,12 +39,15 @@ final class ConfigProvider
         return [
             'aliases'    => [],
             'delegators' => [
-                Handler\DashboardHandler::class => [
-                    AuthorizedPipeline::class,
+                Middleware\AdminConnectMiddleware::class => [
+                    AuthorizedPipeline::class
                 ],
             ],
             'factories'  => [
-                Middleware\AdminConnectMiddleware::class => Middleware\AdminConnectMiddlewareFactory::class,
+                Handler\DashboardHandler::class => Handler\DashboardHandlerFactory::class,
+            ],
+            'invokables' => [
+                Middleware\AdminConnectMiddleware::class => Middleware\AdminConnectMiddleware::class,
             ],
         ];
     }
@@ -39,7 +57,7 @@ final class ConfigProvider
         return [
             [
                 'path'       => '/axleus/admin',
-                'name'       => 'Admin Dashboard',
+                'name'       => 'admin.dashboard',
                 'middleware' => [
                     BodyParamsMiddleware::class,
                     Middleware\AdminConnectMiddleware::class,
