@@ -15,13 +15,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class AdminConnectMiddleware implements MiddlewareInterface
 {
-    public function __construct(
-        private EventManagerInterface $eventManager,
-    ) {
-    }
-
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        $eventManager  = $request->getAttribute(EventManagerInterface::class);
         $adminConnect  = new AdminConnectEvent(AdminConnectEvent::EVENT_ADMIN_CONNECT);
         $dataContainer = new AdminContainer([
             ConfigProvider::class => [
@@ -30,8 +26,8 @@ final class AdminConnectMiddleware implements MiddlewareInterface
         ]);
         $adminConnect->setTarget($dataContainer);
 
-        $result = $this->eventManager->triggerEvent($adminConnect);
-        // BashboardHandler
+        $result = $eventManager->triggerEvent($adminConnect);
+        // DashboardHandler
         return $handler->handle($request->withAttribute(AdminContainer::class, $result->last()));
     }
 }
