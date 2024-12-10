@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Axleus\Admin\Middleware;
 
-use Axleus\Admin\ConfigProvider;
 use Axleus\Admin\AdminContainer;
+use Axleus\Admin\ConfigProvider;
 use Axleus\Admin\Event\AdminConnectEvent;
 use Laminas\EventManager\EventManagerInterface;
 use Psr\Http\Message\ResponseInterface;

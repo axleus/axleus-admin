@@ -48,7 +48,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "AxleusTest\\Admin\\": "test/"
+            "AxleusTest\\Admin\\": "test/unit/"
         }
     },
     "scripts": {
@@ -60,7 +60,7 @@
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
         "static-analysis": "phpstan analyse",
-        "test": "phpunit --colors=always --testsuite test",
+        "test": "phpunit --colors=always --testsuite unit",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
     "minimum-stability": "dev",

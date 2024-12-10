@@ -9,7 +9,7 @@ use Psr\Container\ContainerInterface;
 
 class DashboardHandlerFactory
 {
-    public function __invoke(ContainerInterface $container) : DashboardHandler
+    public function __invoke(ContainerInterface $container): DashboardHandler
     {
         return new DashboardHandler($container->get(TemplateRendererInterface::class));
     }

@@ -10,7 +10,7 @@ class AdminConnectEvent extends Event
 {
     public final const EVENT_ADMIN_CONNECT = 'admin.connect';
 
-    public function getName()
+    public function getName(): string
     {
         return static::EVENT_ADMIN_CONNECT;
     }
