@@ -6,5 +6,4 @@ namespace Axleus\Admin;
 
 interface DashboardDataEntityInterface
 {
-
 }

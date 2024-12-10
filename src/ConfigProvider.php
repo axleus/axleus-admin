@@ -40,7 +40,7 @@ final class ConfigProvider
             'aliases'    => [],
             'delegators' => [
                 Middleware\AdminConnectMiddleware::class => [
-                    AuthorizedPipeline::class
+                    AuthorizedPipeline::class,
                 ],
             ],
             'factories'  => [
@@ -56,14 +56,14 @@ final class ConfigProvider
     {
         return [
             [
-                'path'       => '/axleus/admin',
-                'name'       => 'admin.dashboard',
-                'middleware' => [
+                'path'            => '/axleus/admin',
+                'name'            => 'admin.dashboard',
+                'allowed_methods' => [Http::METHOD_GET],
+                'middleware'      => [
                     BodyParamsMiddleware::class,
                     Middleware\AdminConnectMiddleware::class,
                     Handler\DashboardHandler::class,
                 ],
-                'allowed_methods' => [Http::METHOD_GET],
             ],
         ];
     }
