@@ -6,5 +6,5 @@ namespace Axleus\Admin;
 
 interface AdminConnectCapableInterface
 {
-    public function loadDashboardData(): ?DashboardDataEntityInterface;
+    public function loadDashboardData(): ?DashboardDataServiceInterface;
 }
