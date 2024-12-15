@@ -38,7 +38,7 @@ final class DashboardHandlerTest extends TestCase
         $renderer
             ->expects($this->once())
             ->method('render')
-            ->with('admin::dashboard', $this->isType('array'))
+            ->with('admin::dashboard', $this->isArray())
             ->willReturn('');
 
         $dashboard = new DashboardHandler($renderer);
