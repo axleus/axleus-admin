@@ -6,15 +6,14 @@ namespace AxleusTest\Admin\Handler;
 
 use Axleus\Admin\Handler\DashboardHandler;
 use Fig\Http\Message\RequestMethodInterface as Http;
-use Laminas\Diactoros\ServerRequest;
 use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\ServerRequest;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 #[CoversClass(DashboardHandler::class)]
 final class DashboardHandlerTest extends TestCase
