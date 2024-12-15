@@ -10,6 +10,7 @@ use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\ServerRequest;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -38,7 +39,7 @@ final class DashboardHandlerTest extends TestCase
         $renderer
             ->expects($this->once())
             ->method('render')
-            ->with('admin::dashboard', $this->isArray())
+            ->with('admin::dashboard', self::isArray())
             ->willReturn('');
 
         $dashboard = new DashboardHandler($renderer);
